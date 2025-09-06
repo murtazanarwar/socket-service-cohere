@@ -29,6 +29,7 @@ io.on("connection", (socket) => {
 
   // Relay WebRTC offer
   socket.on("secureDrop:offer", ({ fromUserId, toUserId, sdp }) => {
+    console.log(`UserA: ${fromUserId} Initiated a Secure Drop with UserB: ${toUserId}`);
     const target = userToSocket.get(toUserId);
     if (target) io.to(target).emit("secureDrop:offer", { fromUserId, sdp });
   });
