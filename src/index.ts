@@ -51,7 +51,14 @@ io.on("connection", (socket) => {
     const target = userToSocket.get(toUserId);
     if (target) io.to(target).emit("secureDrop:end", { fromUserId });
   });
+
+  //Decline Session
+  socket.on("secureDrop:decline", ({ fromUserId, toUserId }) => {
+    const target = userToSocket.get(toUserId);
+    if (target) io.to(target).emit("secureDrop:decline", { fromUserId });
+  });
 });
+
 
 server.listen(4000, () => {
   console.log("Socket server running on :4000");
