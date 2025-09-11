@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  // --- Secure Drop Events ---
+  // Secure Drop Events
   socket.on("secureDrop:offer", ({ fromUserId, toUserId, sdp }) => {
     const target = userToSocket.get(toUserId);
     if (target) io.to(target).emit("secureDrop:offer", { fromUserId, sdp });
@@ -63,7 +63,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// ⚡ Works both locally and on Render
+
 const PORT = process.env.PORT || 4000;
 httpServer.listen(PORT, () => {
   console.log(`Socket server running on :${PORT}`);
